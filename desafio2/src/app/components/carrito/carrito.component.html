@@ -1,0 +1,15 @@
+<div *ngIf="toggleCar" >
+  <div class="container mt-2" style="border-top: 1px solid rgb(176, 174, 174);" >
+      <h2 class="text-center">Carrito</h2>
+  </div>
+  <div class="container" >
+    <h5 *ngIf="carItems.length <=0 "  class="text-center" >Aun no tienes productos agregados al carrito</h5>
+    <ul>
+      <li class="mb-2" style="list-style: none;" *ngFor="let item of carItems; let i = index">
+        <img class="me-2" style="width: 40px; height: 40px;" [src]="item.imgUrl" [alt]="item.description">
+        {{ item.name }} - {{ item.description }}
+        <i class="bi bi-x-circle text-danger ms-5" (click)="removeItem(i)" ></i>
+      </li>
+    </ul>
+  </div>
+</div>
