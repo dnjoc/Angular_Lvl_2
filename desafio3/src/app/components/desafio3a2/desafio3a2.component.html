@@ -1,0 +1,17 @@
+<app-header></app-header>
+<div class="container mt-2">
+  <div class="row" style="flex-direction: row; justify-content: space-between;" >
+    <button type="button" class="btn " style="width: 12rem;" [routerLink]="['/home']">Inicio</button>
+  </div>
+</div>
+<div class="container mt-3">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Datos obtenidos:</h5>
+      <p class="card-text mt-3">Nombre: {{ personas.nombre | uppercase }}</p>
+      <p class="card-text">Fecha de conexión: {{ personas.horaConexion | date:'dd/MM/yyyy' }}</p>
+      <p class="card-text">Saldo: {{ personas.saldo | currency:'USD' }}</p>
+      <p class="card-text">Día especial: {{ personas.specialDay | diaSemana | titlecase }}</p>
+    </div>
+  </div>
+</div>

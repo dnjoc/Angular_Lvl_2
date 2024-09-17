@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<div class="container pt-3">
+  <div class="container">
+    <div class="row" style="flex-direction: row; justify-content: space-between;" >
+      <button type="button" class="btn " style="width: 8rem;" [routerLink]="['/home']">Inicio</button>
+      <button type="button" class="btn " style="width: 8rem;" [routerLink]="['/catalogo']">Ir al catalogo</button>
+    </div>
+  </div>
+  <form style="width: 40%; margin: auto;" [formGroup]="preferencesForm" (ngSubmit)="onSubmit()" >
+      <div class="mb-3" >
+        <h2>Preferencias de busqueda</h2>
+        <button type="button" class="btn btn-success" (click)="addPreference()">+ Agregar preferencias</button>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputUsername" class="form-label">Ingresa tu usuario</label>
+        <input type="text" class="form-control" id="exampleInputUsername" formControlName="username">
+        <div *ngIf="username.invalid  && (username.dirty || username.touched)" class="text-danger">
+          <div *ngIf="username.hasError('required')" >El usuario es requerido</div>
+        </div>
+      </div>
+      <div formArrayName="preferences">
+        <div class="mb-3" *ngFor="let pref of preferences.controls; let i=index" >
+          <label for="preferences-{{i}}" class="form-label">Ingresa la preferencia de busqueda {{i+1}}</label>
+          <i class="bi bi-x-circle text-danger ms-5" (click)="removePreference(i)"></i>
+          <input type="text" class="form-control" id="preferences-{{i}}" [formControlName]="i">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
