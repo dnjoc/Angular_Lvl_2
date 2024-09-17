@@ -1,0 +1,130 @@
+
+
+<div class="container mt-3 mb-3">
+  <div class="row">
+    <h2 class="text-center text-primary">Formulario de Registro</h2>
+    <form class="p-4 border border-primary border-2 rounded" (submit)="submitForm(this)" #formRegistro="ngForm" >
+      <div class="mb-3">
+        <label for="name2" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" id="name2" aria-describedby="name2" required name="name2" [(ngModel)]="name" minlength="3" maxlength="25" #name2="ngModel" pattern="^[a-zA-Z\s]+$">
+        <div *ngIf="name2.invalid && (name2.dirty || name2.touched)" >
+            <div *ngIf="name2.value == ''">
+             <p class="text-danger">
+              El nombre es requerido
+            </p>
+            </div>
+            <div *ngIf="name2.errors && name2.value != '' && longitudMinimaPassword3(name2.value) " >
+              <p class="text-danger">
+                El nombre debe tener al menos 3 letras
+              </p>
+            </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="lastname2" class="form-label">Apellido:</label>
+        <input type="text" class="form-control" id="lastname2" aria-describedby="lastname2" required name="lastname2" [(ngModel)]="lastname" minlength="3" maxlength="25" #lastname2="ngModel" pattern="^[a-zA-Z\s]+$">
+        <div *ngIf="lastname2.invalid && (lastname2.dirty || lastname2.touched)" >
+          <div *ngIf="lastname2.value == ''">
+           <p class="text-danger">
+            El apellido es requerido
+          </p>
+          </div>
+          <div *ngIf="lastname2.errors && lastname2.value != '' && longitudMinimaPassword3(lastname2.value) " >
+            <p class="text-danger">
+              El apellido debe tener al menos 3 letras
+            </p>
+          </div>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label for="username2" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="username2" aria-describedby="username2" required name="username2" [(ngModel)]="username" minlength="5" maxlength="15" pattern="^[a-zA-Z\s]+$" #username2="ngModel" >
+        <div *ngIf="username2.invalid && (username2.dirty || username2.touched)" >
+          <div *ngIf="username2.value == ''">
+           <p class="text-danger">
+            El usuario es requerido
+          </p>
+          </div>
+          <div *ngIf="username2.errors && username2.value != '' && longitudMinimaPassword5(username2.value) " >
+            <p class="text-danger">
+              El usuario debe tener al menos 5 caracteres
+            </p>
+          </div>
+          <div *ngIf="tieneCaracteresEspeciales(username2.value) && username2.value != ''" >
+            <p class="text-danger">
+              El usuario no debe tener caracteres especiales
+            </p>
+          </div>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label for="password2" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password2" required name="password2" [(ngModel)]="password" minlength="8" maxlength="16" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%;^&*(),.?:{}|<>])[A-Za-z\d!@#$%;^&*(),.?:{}|<>]{8,16}$" #password2="ngModel"  >
+        <div *ngIf="password2.invalid && (password2.dirty || password2.touched)" >
+          <div *ngIf="password2.value == ''"  >
+           <p class="text-danger">
+            La contraseña es requerida
+          </p>
+          </div>
+          <div *ngIf="password2.errors && password2.value != ''" >
+            <ul class="text-danger">
+              <li [ngClass]="{'text-success': longitudMinimaPassword(password2.value)}">
+                <p>La contraseña debe tener al entre 8 y 16 caracteres</p>
+              </li>
+              <li [ngClass]="{'text-success': tieneNumero(password2.value)}">
+                <p>Al menos un numero</p>
+              </li>
+              <li [ngClass]="{'text-success': tieneLetraMinuscula(password2.value)}">
+                <p>Al menos una minúscula</p>
+              </li>
+              <li [ngClass]="{'text-success': tieneLetraMayuscula(password2.value)}" >
+                <p>al menos una mayúscula</p>
+              </li>
+              <li [ngClass]="{'text-success': tieneCaracterEspecial(password2.value)}">
+                <p>Y al menos un caracter especial</p>
+              </li>
+            </ul>
+          </div>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label for="email2" class="form-label">Correo electronico</label>
+        <input type="email2" class="form-control" id="email2" aria-describedby="emailHelp" [(ngModel)]="email" required name="email" pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" #email2="ngModel" >
+        <div *ngIf="email2.invalid && (email2.dirty || email2.touched)" >
+          <div *ngIf="email2.value == ''">
+           <p class="text-danger">
+            El email es requerido
+          </p>
+          </div>
+          <div *ngIf="email2.errors && email2.value != ''" >
+            <p class="text-danger">
+              El formato del correo debe ser: example&#64;ample.com
+            </p>
+          </div>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono:</label>
+        <input type="text" class="form-control" id="telefono" aria-describedby="telefono" required name="telefono" [(ngModel)]="phone" pattern="^\d{4}-\d{3}-\d{4}$" #telefono="ngModel" >
+        <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" >
+          <div *ngIf="telefono.value == ''">
+           <p class="text-danger">
+            El telefono es requerido
+          </p>
+          </div>
+          <div *ngIf="telefono.errors && telefono.value != ''" >
+            <p class="text-danger">
+              El formato de telefono debe ser: 0000-000-0000
+            </p>
+          </div>
+      </div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="checkbox" name="checkbox" required [(ngModel)]="checkb" #checkbox="ngModel">
+        <label class="form-check-label" for="exampleCheck">Acepto los terminos y condiciones</label>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!formRegistro.form.valid" >Confirmar</button>
+    </form>
+  </div>
+</div>
+
