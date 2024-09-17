@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container mt-2">
+  <div class="row" style="flex-direction: row; justify-content: space-between;" >
+    <button type="button" class="btn " style="width: 12rem;" [routerLink]="['/home']">Inicio</button>
+    <button *ngIf="!showCar"  type="button" class="btn " style="width: 12rem;" (click)="toggleCar()">Ver carrito <i *ngIf="carItems.length > 0"  class="bi bi-cart"><span class="badge text-secondary">{{carItems.length}}</span></i></button>
+    <button *ngIf="showCar"  type="button" class="btn " style="width: 13rem;" (click)="toggleCar()">Ocultar carrito <i *ngIf="carItems.length > 0"  class="bi bi-cart"><span class="badge text-secondary">{{carItems.length}}</span></i></button>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row" style="justify-content: space-around;">
+    <div class="card mb-3" style="width: 16rem;" *ngFor="let item of products" id="{{item.id}}" >
+      <img style="width: 14rem; height: 9rem; margin: auto;" [src]="item.imgUrl" class="card-img-top mt-2" [alt]="item.description">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <a (click)="addToCar(item)" class="btn btn-outline-primary"><i class="bi bi-cart"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-carrito [carItems]="carItems" [toggleCar]="showCar"></app-carrito>

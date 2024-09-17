@@ -1,0 +1,49 @@
+.superNav{
+  margin: auto;
+  background-color: #FFE600 !important;
+
+}
+.contLogo{
+  width: 30% !important;
+}
+nav{
+    flex-wrap: nowrap !important;
+    background-color: #FFE600 !important;
+}
+form input{
+    font-size: .8rem !important;
+    color: rgb(168, 168, 168) !important;
+}
+.span2{
+    font-weight: bolder;
+}
+nav div ul li a{
+    font-size: .8rem !important;
+}
+nav div a{
+    font-size: .8rem !important;
+}
+@media (max-width: 991.98px) {
+  .superNav{
+    justify-content: space-around;
+  }
+  /* .form input{
+    width: 160px;
+  } */
+  .nav1{
+    width: auto !important;
+  }
+}
+@media (max-width: 767.98px) {
+  .logo{
+    width: 95px;
+    height: 18px;
+  }
+  .contLogo{
+    width: auto !important;
+  }
+  /* .form input{
+    width: 110px;
+  } */
+
+}
